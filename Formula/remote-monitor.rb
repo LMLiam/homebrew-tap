@@ -1,32 +1,30 @@
 class RemoteMonitor < Formula
   desc "Terminal UI for monitoring a remote Linux host over SSH"
   homepage "https://github.com/LMLiam/remote-monitor"
-  version "0.1.2"
+  version "0.1.3"
   license "MIT"
-  url "https://github.com/LMLiam/remote-monitor/releases/download/v0.1.1/remote-monitor_0.1.1_darwin_arm64.tar.gz"
-  sha256 "ff88088b010cc111945990ff8ca92d2b893d3278aedf9644c155dc046ca0df21"
 
   on_macos do
     on_arm do
-      url "https://github.com/LMLiam/remote-monitor/releases/download/v0.1.2/remote-monitor_0.1.2_darwin_arm64.tar.gz"
-      sha256 "d151cea49ea7a6d45cb9e954b0f84b6451f488578d250dbf08c5c566bf7b29ae"
+      url "https://github.com/LMLiam/remote-monitor/releases/download/v0.1.3/remote-monitor_0.1.3_darwin_arm64.tar.gz"
+      sha256 "06433559f59deda2dc1d535109e06392ab47575546e5f4ccb16c9c6d734f24e8"
     end
 
     on_intel do
-      url "https://github.com/LMLiam/remote-monitor/releases/download/v0.1.2/remote-monitor_0.1.2_darwin_amd64.tar.gz"
-      sha256 "ce4666e1265dcfb43066d5e2f36699a6d8ab131fa49547af8f69a2074b5d4e13"
+      url "https://github.com/LMLiam/remote-monitor/releases/download/v0.1.3/remote-monitor_0.1.3_darwin_amd64.tar.gz"
+      sha256 "da468467356fa1252ab17084e9ba622fed17914d1aadf591ddcddeddbcd744cf"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/LMLiam/remote-monitor/releases/download/v0.1.2/remote-monitor_0.1.2_linux_arm64.tar.gz"
-      sha256 "72f47656b907504dbaba5efc1b2f4251d90d5f47e9ba4c91c8440ed8761a6491"
+      url "https://github.com/LMLiam/remote-monitor/releases/download/v0.1.3/remote-monitor_0.1.3_linux_arm64.tar.gz"
+      sha256 "e5f165752c46881d9a53f475714aa11f4b87bd3d238368efd3b7c2ce4c521214"
     end
 
     on_intel do
-      url "https://github.com/LMLiam/remote-monitor/releases/download/v0.1.2/remote-monitor_0.1.2_linux_amd64.tar.gz"
-      sha256 "37303dd4c750bffb9d7d397f7729fd6651e9fa16ab7c2c80117abd15bf0a3341"
+      url "https://github.com/LMLiam/remote-monitor/releases/download/v0.1.3/remote-monitor_0.1.3_linux_amd64.tar.gz"
+      sha256 "15153a48f7a2197e7ff04f36ef68d59219d6fcdf6dad8d3b9c84e026fdb1c43b"
     end
   end
 
