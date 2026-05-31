@@ -3,6 +3,8 @@ class RemoteMonitor < Formula
   homepage "https://github.com/LMLiam/remote-monitor"
   version "0.1.2"
   license "MIT"
+  url "https://github.com/LMLiam/remote-monitor/releases/download/v0.1.1/remote-monitor_0.1.1_darwin_arm64.tar.gz"
+  sha256 "ff88088b010cc111945990ff8ca92d2b893d3278aedf9644c155dc046ca0df21"
 
   on_macos do
     on_arm do
