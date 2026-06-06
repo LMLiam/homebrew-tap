@@ -1,30 +1,30 @@
 class RemoteMonitor < Formula
   desc "Terminal UI for monitoring a remote Linux host over SSH"
   homepage "https://github.com/LMLiam/remote-monitor"
-  version "0.2.1"
+  version "0.2.2"
   license "MIT"
 
   on_macos do
     on_arm do
-      url "https://github.com/LMLiam/remote-monitor/releases/download/v0.2.1/remote-monitor_0.2.1_darwin_arm64.tar.gz"
-      sha256 "5203aa8020bdde3e56545e86876b579b9d67297a6fa16fdbed58b0414678fd70"
+      url "https://github.com/LMLiam/remote-monitor/releases/download/v0.2.2/remote-monitor_0.2.2_darwin_arm64.tar.gz"
+      sha256 "890cfa6ff3eda08f3c708803e8e813fa92ad7c71c0a33581626c794f592d2b66"
     end
 
     on_intel do
-      url "https://github.com/LMLiam/remote-monitor/releases/download/v0.2.1/remote-monitor_0.2.1_darwin_amd64.tar.gz"
-      sha256 "f4d1775543af486ac4cde61d78d761fee7bb33634c3ff568e493fd18fd7b0825"
+      url "https://github.com/LMLiam/remote-monitor/releases/download/v0.2.2/remote-monitor_0.2.2_darwin_amd64.tar.gz"
+      sha256 "32b7476fa5247de6d01bd0a82476d89c130164d479346d4d5e6de9d29aae943a"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/LMLiam/remote-monitor/releases/download/v0.2.1/remote-monitor_0.2.1_linux_arm64.tar.gz"
-      sha256 "f901ddf3aead561e815317b35f26b32dee1cce13de38f6cca1e12b9559054a4c"
+      url "https://github.com/LMLiam/remote-monitor/releases/download/v0.2.2/remote-monitor_0.2.2_linux_arm64.tar.gz"
+      sha256 "2b8a2b725112e02a6b186edae70e47af16fab6d2e86d6720edb8c9e2dd35d9a7"
     end
 
     on_intel do
-      url "https://github.com/LMLiam/remote-monitor/releases/download/v0.2.1/remote-monitor_0.2.1_linux_amd64.tar.gz"
-      sha256 "11011f655638378909231430498132d2e096e2723a94c7547f0245ae6ad2e1b0"
+      url "https://github.com/LMLiam/remote-monitor/releases/download/v0.2.2/remote-monitor_0.2.2_linux_amd64.tar.gz"
+      sha256 "7209be03e2e59074b4ca54a18d84d91edd109140cd6db2b71a818b48d924e2af"
     end
   end
 
