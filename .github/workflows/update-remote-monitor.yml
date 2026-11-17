@@ -1,0 +1,70 @@
+name: Update remote-monitor formula
+
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: update-remote-monitor
+  cancel-in-progress: false
+
+jobs:
+  update-formula:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Open formula update PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+
+          tag="$(gh release view --repo LMLiam/remote-monitor --json tagName --jq .tagName)"
+          version="${tag#v}"
+          echo "Latest remote-monitor release: ${tag}"
+
+          current="$(sed -n 's/^  version "\(.*\)"$/\1/p' Formula/remote-monitor.rb)"
+          if [ "$current" = "$version" ]; then
+            echo "Formula already at ${version}"
+            exit 0
+          fi
+          echo "Formula is at ${current:-unknown}, updating to ${version}"
+
+          branch="update/remote-monitor-${tag}"
+          open_pr() {
+            gh pr create --base main --head "$branch" \
+              --title "brew(remote-monitor): update to ${tag}" \
+              --body "Automated update from the ${tag} release: https://github.com/LMLiam/remote-monitor/releases/tag/${tag}"
+          }
+          if git ls-remote --exit-code --heads origin "$branch" >/dev/null; then
+            if [ -n "$(gh pr list --head "$branch" --state all --json number --jq '.[].number')" ]; then
+              echo "PR already exists for ${branch}"
+            else
+              echo "Branch ${branch} exists without a PR; opening one"
+              open_pr
+            fi
+            exit 0
+          fi
+
+          gh release download "$tag" --repo LMLiam/remote-monitor \
+            --pattern "remote-monitor_${version}_checksums.txt" --dir "$RUNNER_TEMP"
+          gh api "repos/LMLiam/remote-monitor/contents/scripts/homebrew/generate-formula.sh?ref=${tag}" \
+            --jq .content | base64 -d > "$RUNNER_TEMP/generate-formula.sh"
+          bash "$RUNNER_TEMP/generate-formula.sh" "$tag" \
+            "$RUNNER_TEMP/remote-monitor_${version}_checksums.txt" Formula/remote-monitor.rb
+
+          echo "Committing formula update to ${branch}"
+          git switch -c "$branch"
+          git add Formula/remote-monitor.rb
+          git -c user.name="github-actions[bot]" \
+            -c user.email="41898299+github-actions[bot]@users.noreply.github.com" \
+            commit -m "brew(remote-monitor): update to ${tag}"
+          git push origin "$branch"
+          open_pr
